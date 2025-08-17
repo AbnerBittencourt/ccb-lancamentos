@@ -91,4 +91,3 @@ dist\bot_exe.exe nome_do_arquivo.xlsx
 ## 4. Observações
 - O executável pode ser distribuído para outros computadores Windows sem precisar instalar Python.
 - Certifique-se de copiar também as imagens da pasta `images/` se o bot depender delas.
-# Passo a passo para instalar e rodar o projeto CCB-Lançamentos
