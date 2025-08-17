@@ -1,26 +1,4 @@
-#
-# Como gerar um executável (.exe) do bot no Windows
-
-## 1. Instale o PyInstaller
-```cmd
-pip install pyinstaller
-```
-
-## 2. Gere o executável
-```cmd
-pyinstaller --onefile bot_exe.py
-```
-
-## 3. O arquivo gerado estará em `dist/bot_exe.exe`
-- Basta executar clicando duas vezes ou pelo terminal:
-```cmd
-dist\bot_exe.exe nome_do_arquivo.xlsx
-```
-
-## 4. Observações
-- O executável pode ser distribuído para outros computadores Windows sem precisar instalar Python.
-- Certifique-se de copiar também as imagens da pasta `images/` se o bot depender delas.
-# Passo a passo para instalar e rodar o projeto CCB-Lançamentos
+# Passo a passo para rodar o bot de lançamentos do CCB
 
 ## 1. Instale o Python 3.12 ou superior
 
@@ -90,3 +68,27 @@ python bot_coordinates.py nome_do_arquivo.xlsx
 - O arquivo Excel deve estar na pasta Downloads do usuário.
 - Ajuste as imagens e coordenadas conforme sua tela.
 - Execute o script com a janela do sistema aberta e visível.
+
+#
+# Como gerar um executável (.exe) do bot no Windows
+
+## 1. Instale o PyInstaller
+```cmd
+pip install pyinstaller
+```
+
+## 2. Gere o executável
+```cmd
+pyinstaller --onefile bot_exe.py
+```
+
+## 3. O arquivo gerado estará em `dist/bot_exe.exe`
+- Basta executar clicando duas vezes ou pelo terminal:
+```cmd
+dist\bot_exe.exe nome_do_arquivo.xlsx
+```
+
+## 4. Observações
+- O executável pode ser distribuído para outros computadores Windows sem precisar instalar Python.
+- Certifique-se de copiar também as imagens da pasta `images/` se o bot depender delas.
+# Passo a passo para instalar e rodar o projeto CCB-Lançamentos
