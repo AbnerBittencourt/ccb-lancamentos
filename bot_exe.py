@@ -166,6 +166,7 @@ def processar_linha(data, valor):
     if not deposito_pos:
         raise Exception("Botão 'deposito' não encontrado!")
     
+    time.sleep(DELAY_ENTRE_ACOES)
     pyautogui.click(pyautogui.center(deposito_pos))
     time.sleep(DELAY_PEQUENO)
     pyautogui.press('tab')
@@ -180,11 +181,12 @@ def processar_linha(data, valor):
     pyautogui.press('enter')
     time.sleep(DELAY_PEQUENO)
     
-    # Verifica se valor termina com ',01' até ',10'
-    match = re.search(r',0([1-9]|10)$', valor)
+    # Verifica se valor termina com ',00' até ',10'
+    match = re.search(r',0([0-9]|10)$', valor)
     if match:
         sufixo = match.group(1)
         codigos = {
+            '00': '0330',
             '01': '0330',
             '02': '0333',
             '03': '1014',
@@ -250,13 +252,13 @@ def main():
         
         # Carrega e valida os dados
         df = pd.read_excel(caminho_arquivo)
+        df['Data'] = pd.to_datetime(df['Data'], errors='coerce')
         validar_dados(df)
         
         logging.info(f"Arquivo carregado: {caminho_arquivo}")
         logging.info(f"Total de registros: {len(df)}")
         
         # Preparação para execução
-        mostrar_mensagem("Preparação", "Posicione o mouse na janela de destino em 5 segundos...", "info")
         time.sleep(5)
         
         # Processamento dos dados
@@ -267,7 +269,8 @@ def main():
             try:
                 # Formata os dados
                 data = row['Data'].strftime('%d/%m/%Y') if pd.notna(row['Data']) else ''
-                valor_str = str(row['Valor']).replace(',', '.')
+                valor_str = str(row['Valor'])
+                valor_str = re.sub(r'[^\d,.-]', '', valor_str).replace(',', '.')
                 valor = f"{float(valor_str):.2f}".replace(".", ",") if pd.notna(row['Valor']) else '0,00'
                 
                 # Processa a linha
@@ -299,7 +302,6 @@ def main():
                 f"Todos os {relatorio['sucessos']} registros foram processados com sucesso!",
                 "info"
             )
-    
     except Exception as e:
         logging.error(f"ERRO GRAVE: {str(e)}", exc_info=True)
         mostrar_mensagem("Erro", f"Ocorreu um erro grave: {str(e)}", "error")
