@@ -2,6 +2,9 @@
 
 ## 1. Instale o Python 3.12 ou superior
 
+- Baixe em https://www.python.org/downloads/windows/ # Windows
+- Marque a opção "Add Python to PATH" na instalação.
+
 ## 2. Clone o repositório
 
 ```sh
@@ -12,7 +15,7 @@ cd ccb-lancamentos
 ## 3. Crie e ative o ambiente virtual
 
 ```sh
-python3 -m venv venv
+python3 -m venv venv / python -m venv venv
 source venv/bin/activate  # Linux/macOS
 venv\Scripts\activate   # Windows
 ```
@@ -33,51 +36,14 @@ sudo apt-get install python3-tk python3-dev gnome-screenshot
 ## 6. Execute o bot
 
 ```sh
-python bot_coordinates.py nome_do_arquivo.xlsx
+python bot_exe.py
 ```
 
-## 7. Ajuste as imagens e coordenadas conforme sua tela
-
-# Passo a passo para executar no Windows
-
-## 1. Instale o Python 3.12 ou superior
-
-- Baixe em https://www.python.org/downloads/windows/
-- Marque a opção "Add Python to PATH" na instalação.
-
-## 2. Clone o repositório
-
-```cmd
-git clone https://github.com/AbnerBittencourt/ccb-lancamentos.git
-cd ccb-lancamentos
-```
-
-## 3. Crie e ative o ambiente virtual
-
-```cmd
-python -m venv venv
-venv\Scripts\activate
-```
-
-## 4. Instale as dependências
-
-```cmd
-pip install -r requirements.txt
-```
-
-## 5. Execute o bot
-
-```cmd
-python bot_coordinates.py nome_do_arquivo.xlsx
-```
-
-## 6. Observações
+## 7. Observações
 
 - O arquivo Excel deve estar na pasta Downloads do usuário.
 - Ajuste as imagens e coordenadas conforme sua tela.
 - Execute o script com a janela do sistema aberta e visível.
-
-#
 
 # Como gerar um executável (.exe) do bot no Windows
 
