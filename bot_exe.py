@@ -177,8 +177,9 @@ def processar_linha(data, valor):
     pyautogui.press('tab')
     pyautogui.write(valor)
     pyautogui.press('tab')
-    pyautogui.press('enter')
-    pyautogui.press('enter')
+    if hasattr(processar_linha, 'conta_contabil') and processar_linha.conta_contabil:
+        pyautogui.write(processar_linha.conta_contabil)
+        pyautogui.press('enter')
     time.sleep(DELAY_PEQUENO)
     
     # Verifica se valor termina com ',00' até ',10'
@@ -249,6 +250,9 @@ def main():
             caminho_arquivo = encontrar_arquivo(nome_arquivo)
         else:
             caminho_arquivo = selecionar_arquivo_interativamente()
+        # Extrai o número da conta contábil do nome do arquivo (ex: _1010 ou _1011)
+        match_conta = re.search(r'_(\d{4})', os.path.basename(caminho_arquivo))
+        conta_contabil = match_conta.group(1) if match_conta else None
         
         # Carrega e valida os dados
         df = pd.read_excel(caminho_arquivo)
@@ -272,6 +276,8 @@ def main():
                 valor_str = str(row['Valor'])
                 valor_str = re.sub(r'[^\d,.-]', '', valor_str).replace(',', '.')
                 valor = f"{float(valor_str):.2f}".replace(".", ",") if pd.notna(row['Valor']) else '0,00'
+                # Passa a conta contábil para a função processar_linha
+                processar_linha.conta_contabil = conta_contabil
                 
                 # Processa a linha
                 if processar_linha_com_tolerancia(data, valor):
