@@ -271,8 +271,8 @@ def main():
         
         for idx, row in df.iterrows():
             try:
-                # Formata os dados
-                data = row['Data'].strftime('%d/%m/%Y') if pd.notna(row['Data']) else ''
+                # Formata os dados para o sistema (MM/dd/YYYY)
+                data = row['Data'].strftime('%m/%d/%Y') if pd.notna(row['Data']) else ''
                 valor_str = str(row['Valor'])
                 valor_str = re.sub(r'[^\d,.-]', '', valor_str).replace(',', '.')
                 valor = f"{float(valor_str):.2f}".replace(".", ",") if pd.notna(row['Valor']) else '0,00'
